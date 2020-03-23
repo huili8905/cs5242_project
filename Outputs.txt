@@ -1,0 +1,290 @@
+======================================================================================================
+======================= CNN =========================================================================
+======================================================================================================
+
+=======================================
+=====
+Normal CNN Model
+- 900 Training files
+- 150 Validation files
+=====
+=======================================
+
+
+	(kh,kw,s)	(h,w,co)	Parameters
+Input			(20,20,1)	
+Conv2D	(3,3,1) same	(20,20,16)	272
+Conv2D	(3,3,1)		(18,18,32)	4,640
+BN
+MaxPool	(2,2,2)		(9,9,32)	0
+Conv2D	(3,3,2)		(4,4,64)	18,496
+BN
+MaxPool	(2,2,2)		(2,2,64)	0
+FC			(256,1)		65,792
+FC			(128,1)		32,896
+FC			(48,1)		6,192
+
+Epoch 248/250
+64/64 [==============================] - 3s 53ms/step - loss: 1.2296 - acc: 0.6027 - val_loss: 4.7324 - val_acc: 0.1914
+Epoch 249/250
+64/64 [==============================] - 3s 50ms/step - loss: 1.3016 - acc: 0.5786 - val_loss: 3.7904 - val_acc: 0.1576
+Epoch 250/250
+64/64 [==============================] - 4s 58ms/step - loss: 1.2623 - acc: 0.5827 - val_loss: 3.8350 - val_acc: 0.1838
+/usr/local/lib/python3.6/dist-packages/keras/utils/data_utils.py:709: UserWarning: An input could not be retrieved. It could be because a worker has died.We do not have any information on the lost sample.
+  UserWarning)
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[2.786005663686251, 0.26207452417751514]
+['loss', 'acc']
+Diff Time: 0:41:00.704540
+
+
+
+	(kh,kw,s)	(h,w,co)	Parameters
+Input			(20,20,1)	
+Conv2D	(3,3,1) same	(20,20,32)	272
+Conv2D	(3,3,1)		(18,18,64)	4,640
+BN
+MaxPool	(2,2,2)		(9,9,64)	0
+Conv2D	(3,3,2)		(4,4,128)	18,496
+BN
+MaxPool	(2,2,2)		(2,2,128)	0
+FC			(512,1)		65,792
+FC			(256,1)		32,896
+FC			(128,1)		32,896
+FC			(48,1)		6,192
+
+Epoch 247/250
+64/64 [==============================] - 6s 98ms/step - loss: 0.6554 - acc: 0.7819 - val_loss: 5.0120 - val_acc: 0.1428
+Epoch 248/250
+64/64 [==============================] - 8s 121ms/step - loss: 0.8151 - acc: 0.7339 - val_loss: 5.0856 - val_acc: 0.1648
+Epoch 249/250
+64/64 [==============================] - 6s 89ms/step - loss: 0.8203 - acc: 0.7314 - val_loss: 4.3972 - val_acc: 0.1631
+Epoch 250/250
+64/64 [==============================] - 7s 108ms/step - loss: 0.9046 - acc: 0.7037 - val_loss: 4.3140 - val_acc: 0.1717
+/usr/local/lib/python3.6/dist-packages/keras/utils/data_utils.py:709: UserWarning: An input could not be retrieved. It could be because a worker has died.We do not have any information on the lost sample.
+  UserWarning)
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[3.330466964938977, 0.2848421554023521]
+['loss', 'acc']
+Diff Time: 0:41:10.937106
+
+======================================================================================================
+======================= CNN Inception ================================================================
+======================================================================================================
+
+
+=======================================
+=====
+Normal CNN Inception Model
+- 900 Training files
+- 150 Validation files
+=====
+=======================================
+
+	(kh,kw,s)	(h,w,co)	Parameters
+Input			(20,20,1)
+Conv2D	(3,3,2,same)	(10,10,16)
+MaxPool	(2,2,1,same)	(10,10,16)
+Incep	(1,1,1,same)	(10,10,32)
+	(1,1,1,same)+(3,3,1,same)
+			(10,10,32)
+	(2,2,1,same)+(1,1,1,same)
+			(10,10,32)
+Incep-out		(10,10,96)
+MaxPool	(2,2,2,same)	(5,5,96)
+Incep	(1,1,1,same)	(5,5,32)
+	(1,1,1,same)+(3,3,1,same)
+			(5,5,64)
+	(2,2,1,same)+(1,1,1,same)
+			(5,5,32)
+Incep-out		(5,5,128)
+AvgPool	(2,2,2,valid)	(2,2,128)
+FC	(1024)
+FC	(48)
+
+Epoch 248/250
+64/64 [==============================] - 4s 60ms/step - loss: 1.3748 - acc: 0.5804 - val_loss: 3.6098 - val_acc: 0.2068
+Epoch 249/250
+64/64 [==============================] - 4s 56ms/step - loss: 1.4623 - acc: 0.5619 - val_loss: 3.0309 - val_acc: 0.2656
+Epoch 250/250
+64/64 [==============================] - 4s 62ms/step - loss: 1.4302 - acc: 0.5545 - val_loss: 3.9633 - val_acc: 0.2077
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[2.2019266585111774, 0.44339435424439755]
+['loss', 'acc']
+Diff Time: 0:39:26.093538
+
+
+	(kh,kw,s)			(h,w,co)	Parameters
+Input					(20,20,1)
+Conv2D	(3,3,1,same)			(20,20,16)
+Conv2D	(3,3,1,same)			(20,20,32)
+MaxPool	(2,2,2,same)			(10,10,32)
+Incep	(1,1,1,same)			(10,10,32)
+	(1,1,1,same)+(3,3,1,same)
+	(1,1,1,same)+(5,5,1,same)
+	(2,2,1,same)+(1,1,1,same)
+Incep-out				(10,10,96)
+MaxPool	(2,2,2,same)			(5,5,96)
+Incep	(1,1,1,same)			(5,5,32)
+	(1,1,1,same)+(3,3,1,same)
+	(1,1,1,same)+(5,5,1,same)
+	(2,2,1,same)+(1,1,1,same)
+Incep-out				(5,5,128)
+AvgPool	(2,2,2,valid)			(2,2,128)
+FC	(1024)
+FC	(48)
+
+
+64/64 [==============================] - 6s 90ms/step - loss: 1.3442 - acc: 0.5936 - val_loss: 4.5158 - val_acc: 0.1347
+Epoch 244/250
+64/64 [==============================] - 6s 88ms/step - loss: 1.4836 - acc: 0.5518 - val_loss: 4.0502 - val_acc: 0.2028
+Epoch 245/250
+64/64 [==============================] - 6s 87ms/step - loss: 1.4512 - acc: 0.5506 - val_loss: 3.6868 - val_acc: 0.2110
+Epoch 246/250
+64/64 [==============================] - 6s 94ms/step - loss: 1.2728 - acc: 0.6127 - val_loss: 4.4960 - val_acc: 0.1912
+Epoch 247/250
+64/64 [==============================] - 6s 87ms/step - loss: 1.5117 - acc: 0.5495 - val_loss: 3.6054 - val_acc: 0.2143
+Epoch 248/250
+64/64 [==============================] - 6s 87ms/step - loss: 1.3642 - acc: 0.5769 - val_loss: 3.9790 - val_acc: 0.1814
+Epoch 249/250
+64/64 [==============================] - 6s 100ms/step - loss: 1.3248 - acc: 0.5956 - val_loss: 4.9065 - val_acc: 0.2195
+Epoch 250/250
+64/64 [==============================] - 5s 84ms/step - loss: 1.4009 - acc: 0.5823 - val_loss: 3.8552 - val_acc: 0.1826
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[1.9145168839481668, 0.4436166264627019]
+['loss', 'acc']
+Diff Time: 0:29:55.836467
+
+
+
+
+======================================================================================================
+======================= DNN =========================================================================
+======================================================================================================
+
+
+=======================================
+=====
+Normal DNN Model
+- 900 Training files
+- 150 Validation files
+=====
+=======================================
+
+    print("Creating a 400-(200-200)-48 deep NN \n")
+    model = Sequential()
+    model.add(Dense(units=200, input_dim=400, activation='relu'))
+    model.add(Dense(units=200, activation='relu'))
+    model.add(Dense(units=48, activation='softmax'))
+
+
+64/64 [==============================] - 1s 13ms/step - loss: 1.5761 - acc: 0.5148 - val_loss: 2.4571 - val_acc: 0.3659
+Epoch 248/250
+64/64 [==============================] - 1s 12ms/step - loss: 1.6765 - acc: 0.4916 - val_loss: 2.4714 - val_acc: 0.3216
+Epoch 249/250
+64/64 [==============================] - 1s 12ms/step - loss: 1.8731 - acc: 0.4490 - val_loss: 2.5362 - val_acc: 0.3339
+Epoch 250/250
+64/64 [==============================] - 1s 13ms/step - loss: 1.6805 - acc: 0.4827 - val_loss: 2.3471 - val_acc: 0.3504
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[1.7669522640602173, 0.4600357647451948]
+['loss', 'acc']
+Diff Time: 0:29:12.682133
+
+
+
+    print("Creating a 400-(256-128)-48 deep NN \n")
+    model = Sequential()
+    model.add(Dense(units=400, input_dim=400, activation='relu'))
+    model.add(Dense(units=256, activation='relu'))
+    model.add(Dense(units=128, activation='relu'))
+    model.add(Dense(units=48, activation='softmax'))
+
+Epoch 245/250
+64/64 [==============================] - 1s 14ms/step - loss: 1.6319 - acc: 0.5376 - val_loss: 2.6830 - val_acc: 0.3282
+Epoch 246/250
+64/64 [==============================] - 1s 15ms/step - loss: 1.4602 - acc: 0.5784 - val_loss: 2.8270 - val_acc: 0.2865
+Epoch 247/250
+64/64 [==============================] - 1s 14ms/step - loss: 1.3250 - acc: 0.5815 - val_loss: 2.7602 - val_acc: 0.3453
+Epoch 248/250
+64/64 [==============================] - 1s 16ms/step - loss: 1.3296 - acc: 0.5855 - val_loss: 2.6959 - val_acc: 0.3148
+Epoch 249/250
+64/64 [==============================] - 1s 13ms/step - loss: 1.5476 - acc: 0.5363 - val_loss: 2.5611 - val_acc: 0.3407
+Epoch 250/250
+64/64 [==============================] - 1s 15ms/step - loss: 1.5118 - acc: 0.5356 - val_loss: 2.6609 - val_acc: 0.3294
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[1.9636053464729912, 0.4180996903712884]
+['loss', 'acc']
+Diff Time: 0:13:53.055066
+
+
+======================================================================================================
+======================= LSTM =========================================================================
+======================================================================================================
+
+=======================================
+=====
+LSTM Model
+- 900 Training files
+- 150 Validation files
+=====
+=======================================
+    model = Sequential()
+    model.add(LSTM(100, input_shape=(n_timesteps, n_features)))
+    model.add(Dropout(0.5))
+    model.add(Dense(100, activation='relu'))
+    model.add(Dense(n_outputs, activation='softmax'))
+
+Epoch 247/250
+64/64 [==============================] - 1s 18ms/step - loss: 1.9155 - acc: 0.4142 - val_loss: 2.5327 - val_acc: 0.3164
+Epoch 248/250
+64/64 [==============================] - 1s 19ms/step - loss: 2.1079 - acc: 0.3801 - val_loss: 2.4250 - val_acc: 0.3165
+Epoch 249/250
+64/64 [==============================] - 1s 18ms/step - loss: 2.2795 - acc: 0.3482 - val_loss: 2.4298 - val_acc: 0.3351
+Epoch 250/250
+64/64 [==============================] - 1s 19ms/step - loss: 2.1051 - acc: 0.3591 - val_loss: 2.3128 - val_acc: 0.3428
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[2.423997894789949, 0.3395793979138607]
+['loss', 'acc']
+Total Run Time: 0:24:51.921503
+
+
+
+    print("Creating a 400-(200-200)-48 deep LSTM \n")
+    model = Sequential()
+    model.add(LSTM(400, input_shape=(n_timesteps, n_features)))
+    model.add(Dropout(0.2))
+    model.add(Dense(200, activation='relu'))
+    model.add(Dropout(0.2))
+    model.add(Dense(200, activation='relu'))
+    model.add(Dense(n_outputs, activation='softmax'))
+
+
+Epoch 247/250
+64/64 [==============================] - 1s 18ms/step - loss: 1.9093 - acc: 0.4100 - val_loss: 2.7100 - val_acc: 0.2934
+Epoch 248/250
+64/64 [==============================] - 1s 20ms/step - loss: 1.9467 - acc: 0.4129 - val_loss: 2.3940 - val_acc: 0.3335
+Epoch 249/250
+64/64 [==============================] - 1s 18ms/step - loss: 2.1864 - acc: 0.3701 - val_loss: 2.4230 - val_acc: 0.3354
+Epoch 250/250
+64/64 [==============================] - 1s 19ms/step - loss: 2.1632 - acc: 0.3606 - val_loss: 2.3637 - val_acc: 0.3316
+===== Tuning_fit_gen.cmd.py =====
+Starting evaluate_generator
+===== Tuning_fit_gen.cmd.py =====
+[2.4569327537629118, 0.30509532791275157]
+['loss', 'acc']
+Total Run Time: 0:14:35.678983
+
